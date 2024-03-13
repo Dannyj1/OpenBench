@@ -1057,6 +1057,9 @@ def safe_download_engine(config, branch, net_path):
 
     bin_name = engine_binary_name(engine, commit_sha, net_path, private)
     out_path = os.path.join('Engines', bin_name)
+    
+    if IS_WINDOWS:
+        out_path = out_path + ".exe"
 
     if private:
 
