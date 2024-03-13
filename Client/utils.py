@@ -314,7 +314,7 @@ def download_public_engine(engine, net_path, branch, source, make_path, out_path
 
         # Prepare the MAKEFILE command
         make_path = os.path.join(src_path, make_path)
-        bin_path  = os.path.join(make_path, os.path.basename(out_path))
+        bin_path  = os.path.join(make_path, engine)
         
         # Hacky way of handling cmake
         if compiler and "cmake" in compiler:
@@ -356,7 +356,7 @@ def download_public_engine(engine, net_path, branch, source, make_path, out_path
 
         # Move the binary to the proper out_path, account for Windows and cross-drive moves
         if check_for_engine_binary(bin_path):
-            shutil.move(check_for_engine_binary(bin_path), os.path.dirname(out_path))
+            shutil.move(check_for_engine_binary(bin_path), out_path)
 
     # Check to see if we have the binary
     if check_for_engine_binary(out_path):
