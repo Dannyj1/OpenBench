@@ -317,7 +317,7 @@ def download_public_engine(engine, net_path, branch, source, make_path, out_path
         bin_path  = os.path.join(make_path, os.path.basename(out_path))
         
         # Hacky way of handling cmake
-        if "cmake" in config.compilers[engine]:
+        if compiler is not None and "cmake" in compiler:
             command     = "cmake -DAPPEND_VERSION=OFF -DENABLE_OPTIMIZATION_FAST_MATH=ON -DMARCH_VALUE=native -DCMAKE_BUILD_TYPE=Release -DSPSA_TUNE=ON".split()
             command.append("-G")
             command.append("Unix Makefiles")
