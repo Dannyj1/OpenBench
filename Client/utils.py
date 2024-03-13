@@ -323,25 +323,25 @@ def download_public_engine(engine, net_path, branch, source, make_path, out_path
             command.append("Unix Makefiles")
             command.append(".")
             process = subprocess.Popen(command, cwd=make_path, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            cxx_output  = process.communicate()[0].decode('utf-8')
+            comp_output  = process.communicate()[0].decode('utf-8')
             
             # Verify that the compilation subprocess did not exit with errors
             if process.returncode:
                 message = 'Error during compilation. The logs have been sent to the server'
                 raise OpenBenchBuildFailedException(message, comp_output)
             
-            print (cxx_output)
+            print (comp_output)
             
             command = "cmake --build .".split()
             process = subprocess.Popen(command, cwd=make_path, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            cxx_output = process.communicate()[0].decode('utf-8')
+            comp_output = process.communicate()[0].decode('utf-8')
             
             # Verify that the compilation subprocess did not exit with errors
             if process.returncode:
                 message = 'Error during compilation. The logs have been sent to the server'
                 raise OpenBenchBuildFailedException(message, comp_output)
             
-            print (cxx_output)
+            print (comp_output)
         else:
             make_cmd  = makefile_command(net_path, make_path, os.path.basename(out_path), compiler)
 
